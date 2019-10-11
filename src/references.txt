@@ -1,0 +1,32 @@
+
+Dapper
+https://dapper-tutorial.net/
+https://dapper-tutorial.net/execute
+https://techbrij.com/asp-net-core-postgresql-dapper-crud
+https://docs.microsoft.com/en-us/aspnet/core/data/ef-rp/intro?view=aspnetcore-3.0&tabs=visual-studio
+https://elanderson.net/2019/02/asp-net-core-with-dapper/
+https://www.talkingdotnet.com/use-dapper-orm-with-asp-net-core/
+https://dotnetcoretutorials.com/2019/08/05/dapper-in-net-core-part-2-dapper-query-basics/
+https://ardalis.com/your-api-and-view-models-should-not-reference-domain-models
+
+User Secrets 
+https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-3.0&tabs=windows
+https://www.c-sharpcorner.com/blogs/asp-net-core-not-that-secret-user-secrets-explained
+
+Config 
+https://docs.microsoft.com/en-us/aspnet/core/fundamentals/configuration/index?view=aspnetcore-3.0
+
+gRPC start
+https://docs.microsoft.com/en-us/aspnet/core/tutorials/grpc/grpc-start?view=aspnetcore-3.0&tabs=visual-studio
+
+Blazor Validation
+https://docs.microsoft.com/en-us/aspnet/core/blazor/forms-validation?view=aspnetcore-3.0
+
+Bootstrap Tutorials
+https://www.tutorialrepublic.com/twitter-bootstrap-tutorial/bootstrap-alerts.php
+Blazor Toast Messages 
+https://chrissainty.com/blazor-toast-notifications-using-only-csharp-html-css/
+
+Blazor Navigation Manager
+https://stackoverflow.com/questions/50102726/get-current-url-in-a-blazor-component
+

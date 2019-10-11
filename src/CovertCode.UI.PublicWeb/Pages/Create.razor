@@ -1,0 +1,84 @@
+﻿@page "/create"
+@using Grpc.Net.Client;
+@inject NavigationManager NavigationManager
+
+<h1>Create Secret</h1>
+<h2>Doing our part to help keep sensitive information out of texts and emails.</h2>
+<h3>
+    CovertCode allows you to share information, without context, for a single time.
+    It will be only be accessible once and will be destroyed.
+</h3>
+<p>Please enter your information you wish to share below. We will provide you with a URL to share.</p>
+<form>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <textarea class="form-control" id="Value" placeholder="Put your Covert Code here" @bind="value" />
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="ttl">Lifetime:</label>
+            <select name="ttl" class="form-control" @bind="ttl">
+                <option value="604800" selected="">7 days</option>
+                <option value="259200">3 days</option>
+                <option value="86400">1 day</option>
+                <option value="43200">12 hours</option>
+                <option value="14400">4 hours</option>
+                <option value="3600">1 hour</option>
+                <option value="1800">30 minutes</option>
+                <option value="300">5 minutes</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="passphraseField">Passphrase (optional):</label>
+            <input class="form-control" name="passphraseField" id="PassPhrase" type="text" placeholder="A word or phrase that's difficult to guess" @bind="passPhrase" />
+        </div>
+    </div>
+    <div class="form-row">
+        <button class="btn btn-primary" @onclick="AddSecret">Add Secret</button>
+    </div>
+
+    <div>
+        @resultMessage
+    </div>
+
+</form>
+
+@code {
+    string value = string.Empty;
+    int ttl = 0;
+    string passPhrase = string.Empty;
+
+    string accessUrl = string.Empty;
+    string resultMessage = string.Empty;
+
+    void AddSecret()
+    {
+        // The port number(5001) must match the port of the gRPC server.
+        var channel = GrpcChannel.ForAddress("https://localhost:5001");
+        var client = new SecretManager.SecretManagerClient(channel);
+        var request = new AddRequest()
+        {
+            Value = value,
+            Ttl = ttl,
+            PassPhrase = passPhrase
+        };
+
+        var response = client.Add(request);
+        if (response.SecretID > 0)
+        {
+            accessUrl = $"{NavigationManager.BaseUri}/secret?Id={response.AccessPhrase}";
+            resultMessage = $"SUCCESS. Your CovertCode was saved. Here is your URL for a one-time use. {accessUrl}";
+
+            value = "";
+            ttl = 0;
+            passPhrase = "";
+        }
+        else
+        {
+            resultMessage = "An Error occurred. Please try your request again.";
+        }
+    }
+}
